@@ -1,0 +1,406 @@
+﻿@using System.Reflection;
+@using KursovoyProekt.Models;
+@model ClassOutput
+@{
+
+    ViewBag.Title = "Home Page";
+}
+
+<form action="/Home/Index" method="post">
+    <img style="margin-bottom: 20px" class="text-center" src='https://sun9-56.userapi.com/impf/hgphPs1HPuYP6plCN4smDt7rPgN5rlAhqoytOQ/CbWgg5t1d0M.jpg?size=873x365&quality=96&proxy=1&sign=20fd714f5fa75ea90feb9d660596aadb&type=album' />
+    <h2 style="color: #201270">Исходные данные:</h2>
+    <div class="miniblock">
+        <div class="superblock">
+            <h5 style="margin: 0">Количество продуктов горения, м³/ч</h5>
+            <input type="text" class="text" name="ci.KolvoProd" size="30" value="@ViewBag.ci.KolvoProd" required />
+        </div>
+        <div class="superblock">
+            <h5 style="margin: 0">Плотность дымовых газов, кг/м³</h5>
+            <input type="text" class="text" name="ci.p0" size="30" value="@ViewBag.ci.p0" required />
+        </div>
+        <div class="superblock">
+            <h5 style="margin: 0">Плотность воздуха при Т=273°К, кг/м³</h5>
+            <input type="text" class="text" name="ci.pv" size="30" value="@ViewBag.ci.pv" required />
+        </div>
+    </div>
+    <div class="miniblock">
+        <div class="superblock">
+            <h4 style="margin: 0">Конец печи:</h4>
+            <div class="superblock">
+                <h5 style="margin: 0">Высота, м</h5>
+                <input type="text" class="text" name="ci.HrabPech" size="25" value="@ViewBag.ci.HrabPech" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">Ширина, м</h5>
+                <input type="text" class="text" name="ci.Drabpech" size="25" value="@ViewBag.ci.Drabpech" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">Температура дыма, К</h5>
+                <input type="text" class="text" name="ci.TdimaVKP" size="25" value="@ViewBag.ci.TdimaVKP" required />
+            </div>
+        </div>
+    </div>
+    <div class="miniblock">
+        <div class="superblock">
+            <h4 style="margin: 0">Вертикальный канал:</h4>
+            <div class="superblock">
+                <h5 style="margin: 0">Высота, м</h5>
+                <input type="text" class="text" name="ci.Hvert" size="25" value="@ViewBag.ci.Hvert" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">Ширина, м</h5>
+                <input type="text" class="text" name="ci.b" size="25" value="@ViewBag.ci.b" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">Длина, м</h5>
+                <input type="text" class="text" name="ci.L" size="25" value="@ViewBag.ci.L" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">Температура дыма, К</h5>
+                <input type="text" class="text" name="ci.TdimaVVK" size="25" value="@ViewBag.ci.TdimaVVK" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">Лямбда</h5>
+                <input type="text" class="text" name="ci.lamda" size="25" value="@ViewBag.ci.lamda" required />
+            </div>
+        </div>
+    </div>
+    <div class="miniblock">
+        <div class="superblock">
+            <h4 style="margin: 0">Боров:</h4>
+            <div class="superblock">
+                <h5 style="margin: 0">Высота, м</h5>
+                <input type="text" class="text" name="ci.Hborov" size="50" value="@ViewBag.ci.Hborov" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">Длина, м</h5>
+                <input type="text" class="text" name="ci.Dborov" size="50" value="@ViewBag.ci.Dborov" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">Длина борова от вертикальных каналов до рекуператора, м</h5>
+                <input type="text" class="text" name="ci.Dborova" size="50" value="@ViewBag.ci.Dborova" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">Температура дыма перед рекуператором, К</h5>
+                <input type="text" class="text" name="ci.TdimaPR" size="50" value="@ViewBag.ci.TdimaPR" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">Температура окружающего воздуха, К</h5>
+                <input type="text" class="text" name="ci.TOkrV" size="50" value="@ViewBag.ci.TOkrV" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">Т0, К</h5>
+                <input type="text" class="text" name="ci.T0" size="50" value="@ViewBag.ci.T0" required />
+            </div>
+        </div>
+    </div>
+    <div class="miniblock">
+        <div class="superblock">
+            <h4 style="margin: 0">Рекуператор:</h4>
+            <div class="superblock">
+                <h5 style="margin: 0">Длина камеры для установки рекуператора, м</h5>
+                <input type="text" class="text" name="ci.HcumDlyaRek" value="@ViewBag.ci.HcumDlyaRek" size="50" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">Ширина камеры для установки рекуператора, м</h5>
+                <input type="text" class="text" name="ci.DcumDlyaRek" value="@ViewBag.ci.DcumDlyaRek" size="50" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">Падение температуры дыма, К</h5>
+                <input type="text" class="text" name="ci.PadTdimavRek" value="@ViewBag.ci.PadTdimavRek" size="50" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">Диаметр труб, мм</h5>
+                <input type="text" class="text" name="ci.dTrub" size="50" value="@ViewBag.ci.dTrub" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">s1=s2=2d, мм</h5>
+                <input type="text" class="text" name="ci.s1s22d" size="50" value="@ViewBag.ci.s1s22d" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">Температура дыма на входе в рекуператор, К</h5>
+                <input type="text" class="text" name="ci.Tp" size="50" value="@ViewBag.ci.Tp" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">Температура дыма на выходе в рекуператор, К</h5>
+                <input type="text" class="text" name="ci.Tp1" size="50" value="@ViewBag.ci.Tp1" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">Средняя температура в рекуператоре, К</h5>
+                <input type="text" class="text" name="ci.TsrVR" size="50" value="@ViewBag.ci.TsrVR" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">Скорость движения дыма в рекуператоре, м/с</h5>
+                <input type="text" class="text" name="ci.W0" size="50" value="@ViewBag.ci.W0" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">Средняя температура стен труб, К</h5>
+                <input type="text" class="text" name="ci.Tst" size="50" value="@ViewBag.ci.Tst" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">Число рядов труб по глубине пучка</h5>
+                <input type="text" class="text" name="ci.m" size="50" value="@ViewBag.ci.m" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">Δh, по диаграмме, Н/м²</h5>
+                <input type="text" class="text" name="ci.deltaH" size="50" value="@ViewBag.ci.deltaH" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">φs1</h5>
+                <input type="text" class="text" name="ci.FIs1" size="50" value="@ViewBag.ci.FIs1" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">φs2</h5>
+                <input type="text" class="text" name="ci.FIs2" size="50" value="@ViewBag.ci.FIs2" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">φd</h5>
+                <input type="text" class="text" name="ci.FId" size="50" value="@ViewBag.ci.FId" required />
+            </div>
+            <div class="superblock">
+                <h5 style="margin: 0">φt ст</h5>
+                <input type="text" class="text" name="ci.FItst" size="50" value="@ViewBag.ci.FItst" required />
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Рассчитать</button>
+</form>
+@if (Model.W0 != 0)
+{
+    <canvas id="myChart" style="max-width:50%; max-height:500px"></canvas>
+    <h3 style="max-width: 80%; color: #201270">
+        Потери напора в вертикальных каналов складываются из потерь на трение, на местных сопротивлениях и на преодоление геометрического напора:
+    </h3>
+
+    <table style="max-width: 70%">
+        <tr>
+            <td class="tdstyle">
+                Скорость движения дымовых газов в конце печи с учетом сечения рабочего пространства печи за счет нагревающихся заготовок толщиной 0,15м
+            </td>
+            <td class="tdvaluestyle">@Math.Round(Model.W0, 4) м/с</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">
+                Сечение трех вертикальных каналов, при скорости движения Wверт0 = 2,25 м/с
+            </td>
+            <td class="tdvaluestyle">@Math.Round(Model.Wvert, 4) м/с</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">Сечение канала:</td>
+            <td class="tdvaluestyle">@Math.Round(Model.Fkan, 4) м²</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">Сечение каждого канала</td>
+            <td class="tdvaluestyle">@Math.Round(Model.Fkajdkan, 4) м²</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">Приведенный диаметр</td>
+            <td class="tdvaluestyle">@Math.Round(Model.dpr, 4) м</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">Потери энергии на трение</td>
+            <td class="tdvaluestyle">@Math.Round(Model.htr, 4) Н/м²</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">Потери энергии при повороте на 90°</td>
+            <td class="tdvaluestyle">@Math.Round(Model.h90, 4) Н/м²</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">Потери энергии при сужении канала</td>
+            <td class="tdvaluestyle">@Math.Round(Model.hcanal, 4) Н/м²</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">Суммарные потери на местных сопротивлениях</td>
+            <td class="tdvaluestyle">@Math.Round(Model.hsumMestn, 4) Н/м²</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">Потери энергии на преодоление геометрического напора</td>
+            <td class="tdvaluestyle">@Math.Round(Model.hgeom, 4) Н/м²</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">Суммарные потери в вертикальном канале</td>
+            <td class="tdvaluestyle">@Math.Round(Model.hsumV, 4) Н/м²</td>
+        </tr>
+    </table>
+
+    <h3 style="max-width: 80%; color: #201270">
+        Определяем потери напора при движении дымовых газов от вертикальных каналов до рекуператора:
+    </h3>
+
+    <table style="max-width: 70%">
+        <tr>
+            <td class="tdstyle">Сечение борова</td>
+            <td class="tdvaluestyle">@Math.Round(Model.Fb, 4) м²</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">Приведенный диаметр борова</td>
+            <td class="tdvaluestyle">@Math.Round(Model.PrivD, 4) м</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">Средняя температура дыма при борове</td>
+            <td class="tdvaluestyle">@Math.Round(Model.TsrB, 4) К</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">Потери энергии при трении</td>
+            <td class="tdvaluestyle">@Math.Round(Model.htr2, 4) Н/м²</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">Потери энергии при двух поворотах на 90° на пути от вертикальных каналов до рекуператора</td>
+            <td class="tdvaluestyle">@Math.Round(Model.h902, 4) Н/м²</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">Суммарные потери энергии на участке от вертикальных каналов до рекуператора</td>
+            <td class="tdvaluestyle">@Math.Round(Model.hsumotVdoR, 4) Н/м²</td>
+        </tr>
+    </table>
+
+    <h3 style="max-width: 80%; color: #201270">
+        Определяем потери энергии в рекуператоре:
+    </h3>
+
+    <table style="max-width: 70%">
+        <tr>
+            <td class="tdstyle">Потери энергии при внезапном расширении при входе в рекуператор</td>
+            <td class="tdvaluestyle">@Math.Round(Model.hmsrek, 4) Н/м²</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">Действительная скорость движения дыма</td>
+            <td class="tdvaluestyle">@Math.Round(Model.Wd, 4) м/с</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">При поперечном омывании дымом шахматного пучка труб</td>
+            <td class="tdvaluestyle">@Math.Round(Model.hrekpuch, 4) Н/м²</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">Потери энергии при внезапном расширении при выходе из рекуператора</td>
+            <td class="tdvaluestyle">@Math.Round(Model.hmsrek2, 4) Н/м²</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">Суммарные потери на местных сопротивлениях</td>
+            <td class="tdvaluestyle">@Math.Round(Model.hsummestSopr, 4)</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">Скорость движения дыма в камере рекуператора за трубами</td>
+            <td class="tdvaluestyle">@Math.Round(Model.W0zatrub, 4) м/с</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">Потери энергии в рекуператоре</td>
+            <td class="tdvaluestyle">@Math.Round(Model.hrekfull, 4) Н/м²</td>
+        </tr>
+    </table>
+
+    <h3 style="max-width: 80%; color: #201270">
+        Определяем потери энергии на участке от рекуператора до шибера:
+    </h3>
+
+    <table style="max-width: 70%">
+        <tr>
+            <td class="tdstyle">Средняя температура дыма на этом участке</td>
+            <td class="tdvaluestyle">@Math.Round(Model.Tdnauch, 4) К</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">Потери на трение</td>
+            <td class="tdvaluestyle">@Math.Round(Model.htr3, 4) Н/м²</td>
+        </tr>
+        <tr>
+            <td class="tdstyle">Общие потери энергии при движении продуктов горения от рабочего пространства до шибера</td>
+            <td class="tdvaluestyle">@Math.Round(Model.hsumFULL, 4) Н/м²</td>
+        </tr>
+    </table>
+}
+<script src="/js/Chart.js"></script>
+<script>
+let ex1 = document.querySelector('#myChart');
+if (ex1)
+{
+    var graphData = @Html.Raw(ViewBag.graphiclist);
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+            type: 'bar',
+            data:
+    {
+                labels: ['Вертикальный канал', 'От Вертикального до Рекуператора', 'Рекуператор'],
+            datasets:
+        [{
+                    label: 'Потери на каналах',
+                    data: graphData,
+            backgroundColor: ['#6f9be6',
+                        '#6f9be6',
+                        '#6f9be6',
+            ],
+            borderColor: ['rgba(0, 0, 0, 0.25)',
+                        'rgba(0, 0, 0, 0.25)',
+                        'rgba(0, 0, 0, 0.25)',
+            ],
+            borderWidth: 3,
+            }]
+            },
+            options:
+            {
+            scales:
+            {
+            yAxes:
+            [{
+            ticks:
+            {
+            beginAtZero: true
+            }
+            }]
+            }
+            }
+            })
+            };</script>
+<style>
+    .tdstyle {
+        max-width: 40%;
+        color: #ffffff;
+        border-radius: 10px;
+        background-color: #6f9be6;
+        padding-left: 10px;
+        padding-right: 15px;
+    }
+
+    .tdvaluestyle {
+        color: #000000;
+        border-radius: 10px;
+        background-color: #aceb84;
+        padding-left: 10px;
+    }
+
+    .superblock {
+        display: inline-block;
+        margin-right: 40px;
+        padding: 5px 0px 5px 0px;
+        color: #ffffff;
+    }
+
+    .miniblock {
+        padding: 10px;
+        margin-bottom: 20px;
+        max-width: 65%;
+        background-color: #6f9be6;
+        border-radius: 10px;
+    }
+
+    .text {
+        border-radius: 10px;
+        border-color: rgba(0, 0, 0, 0.51);
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+        .text:hover {
+            background-color: rgba(255, 255, 255, 0.75);
+        }
+
+        .text:focus {
+            box-shadow: 0px 0px 5px #fff;
+            outline: none;
+        }
+
+    .btn {
+        border-radius: 10px;
+        border-color: rgba(0, 0, 0, 0.51);
+        background-color: #6f9be6;
+        color: #fff;
+    }
+</style>
